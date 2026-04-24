@@ -34,13 +34,10 @@ display:flex; align-items:center; justify-content:space-between; padding:0 16px;
 .nav-right { display:flex; align-items:center; gap:8px; }
 .nav-right img { height:36px; }
 
-.sync-bar { position:fixed; top:58px; left:0; right:0; z-index:190; height:3px; background:transparent; transition:.3s; }
-.sync-bar.loading { background:linear-gradient(90deg, transparent, var(--green), transparent); background-size:200% 100%; animation:syncAnim 1s linear infinite; }
-@keyframes syncAnim { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-
 .page { display:none; padding-top:58px; min-height:100vh; }
 .page.active { display:block; }
 
+/* ══ HERO ══ */
 .hero {
 position:relative; overflow:hidden;
 background:linear-gradient(180deg,#020802 0%,#071205 50%,#020802 100%);
@@ -60,7 +57,14 @@ content:''; position:absolute; inset:0;
 background:repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px);
 pointer-events:none;
 }
-.hero-top { position:relative; z-index:3; text-align:center; display:flex; flex-direction:column; align-items:center; gap:4px; padding:0 16px; }
+
+/* Title block */
+.hero-top {
+position:relative; z-index:3;
+text-align:center;
+display:flex; flex-direction:column; align-items:center;
+gap:4px; padding:0 16px;
+}
 .fire-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(173,255,47,0.1); border:1px solid rgba(173,255,47,0.3); border-radius:20px; padding:4px 14px; margin-bottom:4px; font-family:'Barlow Condensed'; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--green); }
 .fire-pulse { animation:firePulse 1.2s ease-in-out infinite; display:inline-block; }
 @keyframes firePulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.3)} }
@@ -71,18 +75,61 @@ pointer-events:none;
 @keyframes numGlow { 0%,100%{filter:drop-shadow(0 0 20px rgba(173,255,47,0.5))} 50%{filter:drop-shadow(0 0 60px rgba(173,255,47,0.9)) drop-shadow(0 0 100px rgba(173,255,47,0.3))} }
 .electric-line { width:clamp(120px,35vw,240px); height:3px; background:linear-gradient(90deg,transparent,var(--green),#fff,var(--green),transparent); border-radius:2px; margin:6px auto 0; animation:electricFlow 2s linear infinite; background-size:200% 100%; }
 @keyframes electricFlow { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-.hero-row { position:relative; z-index:3; width:100%; max-width:980px; display:flex; align-items:flex-end; justify-content:center; margin-top:8px; }
-.hero-player { flex:0 0 auto; width:clamp(100px, 21vw, 210px); position:relative; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; }
-.hero-player img { width:100%; height:auto; display:block; filter:drop-shadow(0 0 40px rgba(0,0,0,0.9)) brightness(1.08) contrast(1.06); }
-.hp-left img { -webkit-mask-image:linear-gradient(to right,transparent 0%,black 15%,black 80%,transparent 100%),linear-gradient(to top,transparent 0%,black 5%,black 100%); -webkit-mask-composite:source-in; mask-image:linear-gradient(to right,transparent 0%,black 15%,black 80%,transparent 100%),linear-gradient(to top,transparent 0%,black 5%,black 100%); mask-composite:intersect; animation:floatL 5s ease-in-out infinite; }
-.hp-right img { -webkit-mask-image:linear-gradient(to left,transparent 0%,black 15%,black 80%,transparent 100%),linear-gradient(to top,transparent 0%,black 5%,black 100%); -webkit-mask-composite:source-in; mask-image:linear-gradient(to left,transparent 0%,black 15%,black 80%,transparent 100%),linear-gradient(to top,transparent 0%,black 5%,black 100%); mask-composite:intersect; animation:floatR 5s ease-in-out 0.8s infinite; }
+
+/* Bottom row: Ronaldo | center text | Messi */
+.hero-row {
+position:relative; z-index:3;
+width:100%; max-width:980px;
+display:flex; align-items:flex-end; justify-content:center;
+margin-top:8px;
+}
+
+.hero-player {
+flex:0 0 auto;
+width:clamp(100px, 21vw, 210px);
+position:relative;
+display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+}
+.hero-player img {
+width:100%; height:auto; display:block;
+filter:drop-shadow(0 0 40px rgba(0,0,0,0.9)) brightness(1.08) contrast(1.06);
+}
+.hp-left img {
+-webkit-mask-image: linear-gradient(to right,transparent 0%,black 15%,black 80%,transparent 100%), linear-gradient(to top,transparent 0%,black 5%,black 100%);
+-webkit-mask-composite:source-in;
+mask-image: linear-gradient(to right,transparent 0%,black 15%,black 80%,transparent 100%), linear-gradient(to top,transparent 0%,black 5%,black 100%);
+mask-composite:intersect;
+animation:floatL 5s ease-in-out infinite;
+}
+.hp-right img {
+-webkit-mask-image: linear-gradient(to left,transparent 0%,black 15%,black 80%,transparent 100%), linear-gradient(to top,transparent 0%,black 5%,black 100%);
+-webkit-mask-composite:source-in;
+mask-image: linear-gradient(to left,transparent 0%,black 15%,black 80%,transparent 100%), linear-gradient(to top,transparent 0%,black 5%,black 100%);
+mask-composite:intersect;
+animation:floatR 5s ease-in-out 0.8s infinite;
+}
 @keyframes floatL { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
 @keyframes floatR { 0%,100%{transform:translateY(-10px)} 50%{transform:translateY(4px)} }
-.player-glow-l { position:absolute; bottom:0; left:0; right:0; height:50%; background:radial-gradient(ellipse at 50% 100%, rgba(173,255,47,0.22) 0%, transparent 70%); pointer-events:none; animation:glowPulse 3s ease-in-out infinite; }
-.player-glow-r { position:absolute; bottom:0; left:0; right:0; height:50%; background:radial-gradient(ellipse at 50% 100%, rgba(173,255,47,0.22) 0%, transparent 70%); pointer-events:none; animation:glowPulse 3s ease-in-out 1s infinite; }
+.player-glow-l {
+position:absolute; bottom:0; left:0; right:0; height:50%;
+background:radial-gradient(ellipse at 50% 100%, rgba(173,255,47,0.22) 0%, transparent 70%);
+pointer-events:none; animation:glowPulse 3s ease-in-out infinite;
+}
+.player-glow-r {
+position:absolute; bottom:0; left:0; right:0; height:50%;
+background:radial-gradient(ellipse at 50% 100%, rgba(173,255,47,0.22) 0%, transparent 70%);
+pointer-events:none; animation:glowPulse 3s ease-in-out 1s infinite;
+}
 @keyframes glowPulse { 0%,100%{opacity:.5} 50%{opacity:1} }
 .pname-tag { font-family:'Bebas Neue'; font-size:clamp(8px,1.6vw,15px); letter-spacing:2px; color:rgba(255,255,255,0.7); text-align:center; padding:4px 0 6px; text-shadow:0 0 12px rgba(0,0,0,1); }
-.hero-center { flex:1; min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; padding:0 6px 16px; text-align:center; gap:8px; }
+
+/* Center column */
+.hero-center {
+flex:1; min-width:0;
+display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+padding:0 6px 16px;
+text-align:center; gap:8px;
+}
 .title-sub { font-family:'Barlow Condensed'; font-size:clamp(10px,2.2vw,16px); letter-spacing:5px; color:var(--dim); text-transform:uppercase; }
 .rewards-pill { display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center; background:rgba(0,0,0,0.65); border:1px solid rgba(173,255,47,0.2); border-radius:10px; padding:10px 14px; backdrop-filter:blur(8px); }
 .reward-item { text-align:center; }
@@ -92,6 +139,7 @@ pointer-events:none;
 .cta-btn { display:inline-flex; align-items:center; gap:8px; background:var(--green); color:#050a03; border:none; border-radius:8px; font-family:'Bebas Neue'; font-size:clamp(13px,2.8vw,17px); letter-spacing:3px; padding:12px 22px; cursor:pointer; transition:.2s; box-shadow:0 4px 24px rgba(173,255,47,0.3); text-transform:uppercase; }
 .cta-btn:hover { background:#c8ff40; transform:translateY(-2px); box-shadow:0 8px 36px rgba(173,255,47,0.45); }
 
+/* ══ INSCRIPTION ══ */
 .insc-section { background:var(--card); padding:36px 16px 40px; border-top:1px solid var(--border); }
 .section-inner { max-width:900px; margin:0 auto; }
 .section-header { text-align:center; margin-bottom:24px; }
@@ -118,8 +166,6 @@ pointer-events:none;
 .spots-bar { height:100%; background:var(--green); border-radius:3px; transition:.5s; }
 .note-row { display:flex; align-items:center; gap:8px; background:rgba(173,255,47,0.05); border:1px solid rgba(173,255,47,0.12); border-radius:6px; padding:9px 12px; margin-top:12px; font-size:12px; color:var(--dim); }
 .note-row span.ico { color:var(--green); }
-.setup-notice { background:rgba(255,170,0,0.08); border:1px solid rgba(255,170,0,0.3); border-radius:8px; padding:14px 16px; margin-bottom:16px; font-family:'Barlow Condensed'; font-size:13px; color:#ffcc44; letter-spacing:1px; text-align:center; display:none; }
-.setup-notice code { background:rgba(255,255,255,0.1); padding:1px 5px; border-radius:3px; font-family:monospace; font-size:12px; }
 
 .contact-section { background:#070c05; padding:36px 16px; border-top:1px solid var(--border); }
 .contact-inner { max-width:600px; margin:0 auto; text-align:center; }
@@ -145,6 +191,7 @@ footer { background:#000; border-top:1px solid var(--border); padding:24px 16px;
 .socials a { width:30px; height:30px; border:1px solid var(--border); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--dim); text-decoration:none; font-size:12px; transition:.2s; }
 .socials a:hover { border-color:var(--green); color:var(--green); }
 
+/* ══ JOUEURS ══ */
 #page-joueurs { background:#09100a; padding-top:78px; }
 .joueurs-header { padding:0 16px 24px; max-width:900px; margin:0 auto; text-align:center; }
 .joueurs-header h2 { font-family:'Bebas Neue'; font-size:clamp(28px,6vw,44px); letter-spacing:3px; color:#fff; }
@@ -158,6 +205,7 @@ footer { background:#000; border-top:1px solid var(--border); padding:24px 16px;
 .player-card-badge { display:inline-block; margin-top:6px; font-size:10px; letter-spacing:2px; color:var(--green); background:rgba(173,255,47,0.1); border-radius:3px; padding:2px 6px; text-transform:uppercase; }
 .empty-msg { grid-column:1/-1; color:var(--dim); font-size:15px; font-style:italic; text-align:center; padding:40px 0; }
 
+/* ══ BRACKET ══ */
 #page-bracket { background:#060d05; padding-top:70px; }
 .bracket-header { text-align:center; padding:16px 16px 28px; }
 .bracket-badge { display:inline-block; font-family:'Barlow Condensed'; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--green); background:rgba(173,255,47,0.08); border:1px solid rgba(173,255,47,0.2); border-radius:20px; padding:4px 16px; margin-bottom:10px; }
@@ -257,6 +305,7 @@ footer { background:#000; border-top:1px solid var(--border); padding:24px 16px;
 #admin-trigger { position:fixed; bottom:14px; right:14px; z-index:400; background:rgba(173,255,47,0.07); border:1px solid rgba(173,255,47,0.18); color:var(--dim); border-radius:6px; padding:7px 14px; font-family:'Barlow Condensed'; font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:.2s; }
 #admin-trigger:hover { color:var(--green); border-color:var(--green); }
 
+/* Mobile */
 @media(max-width:560px){
 .nav-tab { padding:5px 8px; font-size:11px; gap:3px; letter-spacing:1px; }
 .hero-row { flex-direction:column; align-items:center; }
@@ -272,12 +321,12 @@ footer { background:#000; border-top:1px solid var(--border); padding:24px 16px;
 .spots-bar-wrap { width:80px; }
 .admin-stats { grid-template-columns:repeat(2,1fr); }
 }
-@media(min-width:561px){ .hero-players-mob { display:contents; } }
+@media(min-width:561px){
+.hero-players-mob { display:contents; }
+}
 </style>
 </head>
 <body>
-
-<div class="sync-bar" id="sync-bar"></div>
 
 <nav>
   <div class="nav-logo"><img src="fc2555.png" alt="FC26" onerror="this.style.display='none'"></div>
@@ -289,15 +338,22 @@ footer { background:#000; border-top:1px solid var(--border); padding:24px 16px;
   <div class="nav-right"><img src="PS5.png" alt="PS5" onerror="this.style.display='none'"></div>
 </nav>
 
+<!-- PAGE HOME -->
 <div class="page active" id="page-home">
   <div class="hero">
+
+    <!-- FC26 title -->
     <div class="hero-top">
       <div class="fire-badge"><span class="fire-pulse">🔥</span> Compétition Officielle</div>
       <div class="title-competition">FIFA Tournament</div>
       <div class="title-fc26"><span class="fc-text">FC<span class="num-text">26</span></span></div>
       <div class="electric-line"></div>
     </div>
+
+    <!-- Ronaldo | "The Ultimate Gaming Battle" + rewards + CTA | Messi -->
     <div class="hero-row">
+
+      <!-- Mobile wraps both players together above center -->
       <div class="hero-players-mob">
         <div class="hero-player hp-left">
           <div class="player-glow-l"></div>
@@ -310,26 +366,33 @@ footer { background:#000; border-top:1px solid var(--border); padding:24px 16px;
           <div class="pname-tag">LIONEL MESSI</div>
         </div>
       </div>
+
+      <!-- Center -->
       <div class="hero-center">
         <div class="title-sub">The Ultimate Gaming Battle</div>
         <div class="rewards-pill">
-          <div class="reward-item"><div class="reward-place">🥇 1ère Place</div><div class="reward-amount">150 DH</div></div>
+          <div class="reward-item">
+            <div class="reward-place">🥇 1ère Place</div>
+            <div class="reward-amount">150 DH</div>
+          </div>
           <div class="reward-sep">|</div>
-          <div class="reward-item"><div class="reward-place">🥈 2ème Place</div><div class="reward-amount">50 DH</div></div>
+          <div class="reward-item">
+            <div class="reward-place">🥈 2ème Place</div>
+            <div class="reward-amount">50 DH</div>
+          </div>
         </div>
         <button class="cta-btn" onclick="document.getElementById('inscription-section').scrollIntoView({behavior:'smooth'})">⚽ S'inscrire Maintenant</button>
       </div>
+
     </div>
   </div>
 
+  <!-- INSCRIPTION -->
   <div class="insc-section" id="inscription-section">
     <div class="section-inner">
       <div class="section-header">
         <h2>Inscription <span>Gratuite</span></h2>
         <p>0 DH · Rejoins la compétition FC26</p>
-      </div>
-      <div id="setup-notice" class="setup-notice">
-       <code>$2a$10$kB./2nISHvqcKS5UANxPre3doDa9JVEyp59QeyBy42qRzA7ze/AMO</code> 
       </div>
       <div class="insc-card">
         <div class="insc-card-top">
@@ -386,14 +449,18 @@ footer { background:#000; border-top:1px solid var(--border); padding:24px 16px;
   </footer>
 </div>
 
+<!-- PAGE JOUEURS -->
 <div class="page" id="page-joueurs">
   <div class="joueurs-header">
     <h2>🎮 Joueurs <span>Inscrits</span></h2>
     <p id="joueurs-count-label">Chargement...</p>
   </div>
-  <div id="players-grid" class="joueurs-grid"><p class="empty-msg">Chargement...</p></div>
+  <div id="players-grid" class="joueurs-grid">
+    <p class="empty-msg">Chargement...</p>
+  </div>
 </div>
 
+<!-- PAGE BRACKET -->
 <div class="page" id="page-bracket">
   <div class="bracket-header">
     <div class="bracket-badge">🎲 Tirage Officiel</div>
@@ -412,6 +479,7 @@ footer { background:#000; border-top:1px solid var(--border); padding:24px 16px;
   <div class="bracket-scroll"><div class="bracket" id="bracket-container"></div></div>
 </div>
 
+<!-- POPUP INSCRIPTION -->
 <div class="popup-overlay" id="popup" onclick="closePopup(event)">
   <div class="popup-box">
     <span class="popup-icon">🎉</span>
@@ -423,6 +491,7 @@ footer { background:#000; border-top:1px solid var(--border); padding:24px 16px;
   </div>
 </div>
 
+<!-- POPUP GAGNANT -->
 <div class="winner-popup-overlay" id="winner-popup">
   <div class="winner-popup-box">
     <span class="wp-icon">🏆</span>
@@ -433,6 +502,7 @@ footer { background:#000; border-top:1px solid var(--border); padding:24px 16px;
   </div>
 </div>
 
+<!-- ADMIN PANEL -->
 <div id="admin-panel" onclick="closeAdminOverlay(event)">
   <div class="admin-box">
     <div class="admin-header">
@@ -445,148 +515,99 @@ footer { background:#000; border-top:1px solid var(--border); padding:24px 16px;
 <button id="admin-trigger" onclick="openAdmin()">⚙ Admin</button>
 
 <script>
-// ═══════════════════════════════════════════════
-//  ✏️  ÉTAPE 1 — Colle ta Secret Key JSONBin ici
-//  Va sur jsonbin.io → API Keys → copie la clé
-// ═══════════════════════════════════════════════
-const JSONBIN_KEY = 'METS_TA_CLE_ICI';
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+  window.scrollTo(0, 0);
+  if (name === 'joueurs') refreshJoueurs();
+  if (name === 'bracket') refreshBracket();
+}
 
-// ═══════════════════════════════════════════════
-//  ✏️  ÉTAPE 2 — Laisse vide la 1ère fois.
-//  Après le 1er chargement, ouvre la console
-//  (F12) et copie les IDs affichés ici.
-// ═══════════════════════════════════════════════
-let BIN_PLAYERS = '';
-let BIN_BRACKET = '';
-// ═══════════════════════════════════════════════
-
+const STORAGE_KEY = 'fc26-players';
+const BRACKET_KEY = 'fc26-bracket';
 const MAX = 16;
-const ADMIN_PASS = 'fc26admin';
 let adminUnlocked = false;
-const RN = ['8ème de Finale','Quart de Finale','Demi Finale','Finale'];
-const RC = ['8 matchs','4 matchs','2 matchs','1 match'];
+const ADMIN_PASS = 'fc26admin';
 
-if (JSONBIN_KEY === 'METS_TA_CLE_ICI') {
-  document.getElementById('setup-notice').style.display = 'block';
+// ── Shared storage (tous les utilisateurs voient les mêmes données) ──
+async function loadPlayers() {
+  try { const r = await window.storage.get(STORAGE_KEY, true); return r ? JSON.parse(r.value) : []; }
+  catch { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; } }
 }
-
-function setLoading(on) {
-  document.getElementById('sync-bar').className = 'sync-bar' + (on ? ' loading' : '');
+async function savePlayers(p) {
+  const d = JSON.stringify(p);
+  try { await window.storage.set(STORAGE_KEY, d, true); } catch {}
+  try { localStorage.setItem(STORAGE_KEY, d); } catch {}
 }
-function esc(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function loadBracket() {
+  try { const r = await window.storage.get(BRACKET_KEY, true); return r ? JSON.parse(r.value) : emptyBracket(); }
+  catch { try { return JSON.parse(localStorage.getItem(BRACKET_KEY) || 'null') || emptyBracket(); } catch { return emptyBracket(); } }
+}
+async function saveBracket(b) {
+  const d = JSON.stringify(b);
+  try { await window.storage.set(BRACKET_KEY, d, true); } catch {}
+  try { localStorage.setItem(BRACKET_KEY, d); } catch {}
 }
 function emptyBracket() {
   return {
     rounds: [
-      Array.from({length:8},()=>({p1:null,p2:null,winner:null})),
-      Array.from({length:4},()=>({p1:null,p2:null,winner:null})),
-      Array.from({length:2},()=>({p1:null,p2:null,winner:null})),
-      Array.from({length:1},()=>({p1:null,p2:null,winner:null})),
+      Array.from({length:8}, () => ({p1:null,p2:null,winner:null})),
+      Array.from({length:4}, () => ({p1:null,p2:null,winner:null})),
+      Array.from({length:2}, () => ({p1:null,p2:null,winner:null})),
+      Array.from({length:1}, () => ({p1:null,p2:null,winner:null})),
     ],
-    drawnPlayers:[]
+    drawnPlayers: []
   };
 }
+function esc(s) { return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
-const H = () => ({ 'Content-Type':'application/json', 'X-Master-Key': JSONBIN_KEY, 'X-Bin-Private':'false' });
-
-async function createBin(name, data) {
-  const res = await fetch('https://api.jsonbin.io/v3/b', {
-    method: 'POST',
-    headers: { ...H(), 'X-Bin-Name': name },
-    body: JSON.stringify(data)
-  });
-  const json = await res.json();
-  const id = json.metadata?.id;
-  const varName = name === 'fc26-players' ? 'BIN_PLAYERS' : 'BIN_BRACKET';
-  console.log(`%c✅ Bin "${name}" créé — ID: ${id}`, 'color:#ADFF2F;font-weight:bold');
-  console.log(`%c👉 Dans le code, remplace : ${varName} = '${id}'`, 'color:#ffcc44');
-  return id;
-}
-
-async function readBin(id) {
-  const res = await fetch(`https://api.jsonbin.io/v3/b/${id}/latest`, { headers: H() });
-  const json = await res.json();
-  return json.record;
-}
-
-async function writeBin(id, data) {
-  await fetch(`https://api.jsonbin.io/v3/b/${id}`, {
-    method: 'PUT', headers: H(), body: JSON.stringify(data)
-  });
-}
-
-async function initBins() {
-  if (!BIN_PLAYERS) BIN_PLAYERS = await createBin('fc26-players', { players: [] });
-  if (!BIN_BRACKET) BIN_BRACKET = await createBin('fc26-bracket', emptyBracket());
-}
-
-async function getPlayers() {
-  try { return (await readBin(BIN_PLAYERS)).players || []; } catch { return []; }
-}
-async function savePlayers(p) { await writeBin(BIN_PLAYERS, { players: p }); }
-async function getBracket() {
-  try { return await readBin(BIN_BRACKET) || emptyBracket(); } catch { return emptyBracket(); }
-}
-async function saveBracket(b) { await writeBin(BIN_BRACKET, b); }
-
-function updateHomeUI(players) {
+// ── Home ──
+async function refreshHomeUI() {
+  const players = await loadPlayers();
   const rem = MAX - players.length;
   document.getElementById('spots-remaining').textContent = rem;
   const bar = document.getElementById('spots-bar');
-  bar.style.width = (rem/MAX*100)+'%';
+  bar.style.width = (rem/MAX*100) + '%';
   bar.style.background = rem<=4?'#ff4444':rem<=8?'#ffaa00':'var(--green)';
   const btn = document.getElementById('register-btn');
   const banner = document.getElementById('full-banner');
-  if (rem===0) { btn.disabled=true; banner.style.display='block'; }
+  if (rem === 0) { btn.disabled=true; banner.style.display='block'; }
   else { btn.disabled=false; banner.style.display='none'; }
 }
 
-async function showPage(name) {
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  document.getElementById('tab-'+name).classList.add('active');
-  window.scrollTo(0,0);
-  if (name==='home') { setLoading(true); updateHomeUI(await getPlayers()); setLoading(false); }
-  if (name==='joueurs') await refreshJoueurs();
-  if (name==='bracket') await refreshBracket();
-}
-
 async function register() {
-  if (JSONBIN_KEY==='METS_TA_CLE_ICI') { alert('Configure ta clé JSONBin d\'abord !'); return; }
   const input = document.getElementById('pseudo-input');
   const name = input.value.trim();
   if (!name) { input.focus(); return; }
-  const btn = document.getElementById('register-btn');
-  btn.disabled=true; btn.textContent='⏳ Inscription...';
-  setLoading(true);
-  const players = await getPlayers();
-  if (players.length>=MAX) { alert('Les 16 places sont complètes !'); btn.disabled=false; btn.textContent="⚽ S'inscrire — C'est GRATUIT !"; setLoading(false); return; }
-  if (players.some(p=>p.name.toLowerCase()===name.toLowerCase())) { alert('Ce pseudo est déjà inscrit !'); btn.disabled=false; btn.textContent="⚽ S'inscrire — C'est GRATUIT !"; setLoading(false); return; }
+  const players = await loadPlayers();
+  if (players.length >= MAX) return;
+  if (players.some(p => p.name.toLowerCase() === name.toLowerCase())) { alert('Ce pseudo est déjà inscrit !'); return; }
   players.push({ name, time: new Date().toISOString() });
   await savePlayers(players);
-  setLoading(false);
-  btn.disabled=false; btn.textContent="⚽ S'inscrire — C'est GRATUIT !";
-  input.value='';
-  updateHomeUI(players);
-  document.getElementById('popup-name').textContent=name;
-  document.getElementById('popup-spots').textContent=MAX-players.length;
+  input.value = '';
+  const rem = MAX - players.length;
+  document.getElementById('popup-name').textContent = name;
+  document.getElementById('popup-spots').textContent = rem;
   document.getElementById('popup').classList.add('show');
+  await refreshHomeUI();
 }
 
-document.getElementById('pseudo-input').addEventListener('keydown', e=>{ if(e.key==='Enter') register(); });
-function closePopup(e) { if(!e||e.target.id==='popup'||e.target.classList.contains('btn-close')) document.getElementById('popup').classList.remove('show'); }
+document.getElementById('pseudo-input').addEventListener('keydown', e => { if (e.key==='Enter') register(); });
+function closePopup(e) {
+  if (!e || e.target.id==='popup' || e.target.classList.contains('btn-close'))
+    document.getElementById('popup').classList.remove('show');
+}
 
+// ── Joueurs ──
 async function refreshJoueurs() {
-  setLoading(true);
-  const players = await getPlayers();
-  setLoading(false);
+  const players = await loadPlayers();
   const grid = document.getElementById('players-grid');
   const lbl = document.getElementById('joueurs-count-label');
   lbl.textContent = players.length===0 ? 'Aucun joueur inscrit' : `${players.length} / ${MAX} joueurs inscrits`;
   if (players.length===0) { grid.innerHTML='<p class="empty-msg">Aucun joueur inscrit pour le moment.</p>'; return; }
-  grid.innerHTML = players.map((p,i)=>`
+  grid.innerHTML = players.map((p,i) => `
     <div class="player-card" style="animation-delay:${i*0.04}s">
       <div class="player-card-num">#${i+1}</div>
       <div class="player-card-name">${esc(p.name)}</div>
@@ -594,24 +615,82 @@ async function refreshJoueurs() {
     </div>`).join('');
 }
 
+// ── Bracket ──
+const RN = ['8ème de Finale','Quart de Finale','Demi Finale','Finale'];
+const RC = ['8 matchs','4 matchs','2 matchs','1 match'];
+
 function updateBracketAdminUI() {
-  document.getElementById('bracket-admin-controls').style.display = adminUnlocked?'block':'none';
-  document.getElementById('bracket-viewonly-notice').style.display = adminUnlocked?'none':'block';
+  document.getElementById('bracket-admin-controls').style.display = adminUnlocked ? 'block' : 'none';
+  document.getElementById('bracket-viewonly-notice').style.display = adminUnlocked ? 'none' : 'block';
+}
+
+async function drawNextMatch() {
+  if (!adminUnlocked) return;
+  const players = await loadPlayers();
+  const bracket = await loadBracket();
+  const r0 = bracket.rounds[0];
+  const ei = r0.findIndex(m => m.p1===null);
+  if (ei===-1) { document.getElementById('draw-status').textContent='✓ Tous les matchs du 1er tour sont tirés !'; return; }
+  const avail = players.map(p=>p.name).filter(n=>!bracket.drawnPlayers.includes(n));
+  if (avail.length<2) { alert('Pas assez de joueurs ! (min 2)'); return; }
+  const pick = a => a.splice(Math.floor(Math.random()*a.length),1)[0];
+  const pool = [...avail];
+  const p1=pick(pool), p2=pick(pool);
+  r0[ei].p1=p1; r0[ei].p2=p2;
+  bracket.drawnPlayers.push(p1,p2);
+  await saveBracket(bracket);
+  await renderBracket(bracket);
+  setTimeout(()=>{
+    const el=document.getElementById(`match-0-${ei}`);
+    if(el){el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),800);el.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}
+  },100);
+  const drawn=ei+1,total=r0.length;
+  if(drawn===total){const st=document.getElementById('draw-status');st.textContent='🎯 Tirage complet !';st.classList.add('done');document.getElementById('draw-btn').disabled=true;document.getElementById('bracket-hint').style.display='block';}
+  else document.getElementById('draw-status').textContent=`Match ${drawn}/${total} tiré — ${total-drawn} restants`;
+}
+
+async function setWinner(rIdx, mIdx, pNum) {
+  if (!adminUnlocked) return;
+  const bracket = await loadBracket();
+  const match = bracket.rounds[rIdx][mIdx];
+  if (!match.p1||!match.p2) return;
+  const winner = pNum===1?match.p1:match.p2;
+  match.winner = winner;
+  if (rIdx < bracket.rounds.length-1) {
+    const nr=rIdx+1, nm=Math.floor(mIdx/2);
+    bracket.rounds[nr][nm][mIdx%2===0?'p1':'p2']=winner;
+  }
+  await saveBracket(bracket);
+  await renderBracket(bracket);
+  const isChamp = rIdx===bracket.rounds.length-1;
+  document.getElementById('wp-name').textContent=winner;
+  document.getElementById('wp-msg').textContent=isChamp?'🏆 CHAMPION FC26 !':`Avance en ${RN[rIdx+1]} !`;
+  document.getElementById('winner-popup').classList.add('show');
+}
+function closeWinnerPopup(){document.getElementById('winner-popup').classList.remove('show');}
+
+async function resetBracket() {
+  if(!adminUnlocked) return;
+  if(!confirm('Réinitialiser tout le bracket ?')) return;
+  await saveBracket(emptyBracket());
+  await renderBracket(emptyBracket());
+  const st=document.getElementById('draw-status');
+  st.textContent='Appuie pour tirer 2 joueurs au sort';st.classList.remove('done');
+  document.getElementById('draw-btn').disabled=false;
+  document.getElementById('bracket-hint').style.display='none';
 }
 
 async function refreshBracket() {
   updateBracketAdminUI();
-  setLoading(true);
-  const bracket = await getBracket();
-  setLoading(false);
-  renderBracket(bracket);
+  const bracket = await loadBracket();
+  await renderBracket(bracket);
   if (!adminUnlocked) return;
   const r0 = bracket.rounds[0];
   const allFilled = r0.every(m=>m.p1!==null&&m.p2!==null);
   if (allFilled) {
     document.getElementById('draw-btn').disabled=true;
     const st=document.getElementById('draw-status');
-    st.textContent='🎯 Tirage complet !'; st.classList.add('done');
+    st.textContent='🎯 Tirage complet !';st.classList.add('done');
     document.getElementById('bracket-hint').style.display='block';
   } else {
     const drawn=r0.filter(m=>m.p1!==null).length;
@@ -619,7 +698,7 @@ async function refreshBracket() {
   }
 }
 
-function renderBracket(bracket) {
+async function renderBracket(bracket) {
   const container = document.getElementById('bracket-container');
   container.innerHTML='';
   const nextEmpty = bracket.rounds[0].findIndex(m=>m.p1===null);
@@ -630,7 +709,8 @@ function renderBracket(bracket) {
     const md=document.createElement('div');
     md.className='round-matches';
     round.forEach((match,mIdx)=>{
-      const w=document.createElement('div'); w.className='match-wrapper';
+      const w=document.createElement('div');
+      w.className='match-wrapper';
       const isNext=rIdx===0&&mIdx===nextEmpty;
       const canPick=match.p1&&match.p2&&!match.winner&&adminUnlocked;
       const cls=p=>['match-player',p?'filled':'empty-slot',canPick?'clickable':'',match.winner===p?'winner':'',match.winner&&match.winner!==p&&p?'loser':''].filter(Boolean).join(' ');
@@ -643,97 +723,50 @@ function renderBracket(bracket) {
       md.appendChild(w);
     });
     if(rIdx===bracket.rounds.length-1){
-      const fm=round[0]; const ch=document.createElement('div'); ch.className='match-wrapper';
+      const fm=round[0];
+      const ch=document.createElement('div');
+      ch.className='match-wrapper';
       ch.innerHTML=`<div class="match-box" style="border-color:rgba(173,255,47,0.4);background:linear-gradient(135deg,#0a1507,#0f1e09)"><div style="padding:14px;text-align:center"><div style="font-size:10px;letter-spacing:3px;color:var(--dim);font-family:'Barlow Condensed';text-transform:uppercase;margin-bottom:5px">Champion</div>${fm.winner?`<div style="font-size:26px">🏆</div><div style="font-family:'Bebas Neue';font-size:20px;letter-spacing:3px;color:var(--green)">${esc(fm.winner)}</div>`:`<div style="font-size:22px">🏆</div><div style="font-family:'Barlow Condensed';font-size:12px;color:rgba(255,255,255,0.1);font-style:italic">À déterminer</div>`}</div></div>`;
       md.appendChild(ch);
     }
-    rd.appendChild(md); container.appendChild(rd);
+    rd.appendChild(md);
+    container.appendChild(rd);
   });
 }
 
-async function drawNextMatch() {
-  if(!adminUnlocked) return;
-  setLoading(true);
-  const players=await getPlayers(); const bracket=await getBracket();
-  setLoading(false);
-  const r0=bracket.rounds[0]; const ei=r0.findIndex(m=>m.p1===null);
-  if(ei===-1){document.getElementById('draw-status').textContent='✓ Tous tirés !';return;}
-  const avail=players.map(p=>p.name).filter(n=>!bracket.drawnPlayers.includes(n));
-  if(avail.length<2){alert('Pas assez de joueurs !');return;}
-  const pick=a=>a.splice(Math.floor(Math.random()*a.length),1)[0];
-  const pool=[...avail]; const p1=pick(pool),p2=pick(pool);
-  r0[ei].p1=p1; r0[ei].p2=p2; bracket.drawnPlayers.push(p1,p2);
-  setLoading(true); await saveBracket(bracket); setLoading(false);
-  renderBracket(bracket);
-  setTimeout(()=>{const el=document.getElementById(`match-0-${ei}`);if(el){el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),800);el.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}},100);
-  const drawn=ei+1,total=r0.length;
-  if(drawn===total){const st=document.getElementById('draw-status');st.textContent='🎯 Tirage complet !';st.classList.add('done');document.getElementById('draw-btn').disabled=true;document.getElementById('bracket-hint').style.display='block';}
-  else document.getElementById('draw-status').textContent=`Match ${drawn}/${total} tiré — ${total-drawn} restants`;
-}
-
-async function setWinner(rIdx,mIdx,pNum) {
-  if(!adminUnlocked) return;
-  setLoading(true); const bracket=await getBracket(); setLoading(false);
-  const match=bracket.rounds[rIdx][mIdx];
-  if(!match.p1||!match.p2) return;
-  const winner=pNum===1?match.p1:match.p2;
-  match.winner=winner;
-  if(rIdx<bracket.rounds.length-1){const nr=rIdx+1,nm=Math.floor(mIdx/2);bracket.rounds[nr][nm][mIdx%2===0?'p1':'p2']=winner;}
-  setLoading(true); await saveBracket(bracket); setLoading(false);
-  renderBracket(bracket);
-  const isChamp=rIdx===bracket.rounds.length-1;
-  document.getElementById('wp-name').textContent=winner;
-  document.getElementById('wp-msg').textContent=isChamp?'🏆 CHAMPION FC26 !':`Avance en ${RN[rIdx+1]} !`;
-  document.getElementById('winner-popup').classList.add('show');
-}
-function closeWinnerPopup(){document.getElementById('winner-popup').classList.remove('show');}
-
-async function resetBracket(){
-  if(!adminUnlocked) return;
-  if(!confirm('Réinitialiser ?')) return;
-  setLoading(true); await saveBracket(emptyBracket()); setLoading(false);
-  renderBracket(emptyBracket());
-  const st=document.getElementById('draw-status');
-  st.textContent='Appuie pour tirer 2 joueurs au sort'; st.classList.remove('done');
-  document.getElementById('draw-btn').disabled=false;
-  document.getElementById('bracket-hint').style.display='none';
-}
-
+// ── Admin ──
 function openAdmin(){document.getElementById('admin-panel').classList.add('show');renderAdmin();}
 function closeAdmin(){document.getElementById('admin-panel').classList.remove('show');}
 function closeAdminOverlay(e){if(e.target===document.getElementById('admin-panel'))closeAdmin();}
 
-async function renderAdmin(){
+async function renderAdmin() {
   const body=document.getElementById('admin-body');
   if(!adminUnlocked){
     body.innerHTML=`<div class="admin-login-box"><h3>🔐 Accès Admin</h3><input type="password" id="admin-pass" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')checkPass()"><button class="btn-register" onclick="checkPass()">Connexion</button><div class="admin-err" id="admin-err"></div></div>`;
     return;
   }
-  setLoading(true); const players=await getPlayers(); setLoading(false);
+  const players=await loadPlayers();
   const rem=MAX-players.length;
   body.innerHTML=`<div class="admin-stats"><div class="stat-card"><div class="stat-num">${players.length}</div><div class="stat-lbl">Inscrits</div></div><div class="stat-card"><div class="stat-num">${rem}</div><div class="stat-lbl">Places libres</div></div><div class="stat-card"><div class="stat-num">${MAX}</div><div class="stat-lbl">Maximum</div></div></div><div class="admin-list">${players.length===0?'<div class="admin-empty">Aucun joueur inscrit.</div>':players.map((p,i)=>`<div class="admin-player-row"><div class="admin-player-info"><div class="admin-num">#${i+1}</div><div><div class="admin-name">${esc(p.name)}</div><div class="admin-time">${new Date(p.time).toLocaleString('fr-FR')}</div></div></div><button class="btn-remove" onclick="removePlayer(${i})">✕ Retirer</button></div>`).join('')}</div>`;
 }
 
 function checkPass(){
   const pw=document.getElementById('admin-pass').value;
-  if(pw===ADMIN_PASS){adminUnlocked=true;renderAdmin();updateBracketAdminUI();}
+  if(pw===ADMIN_PASS){adminUnlocked=true;renderAdmin();updateBracketAdminUI();refreshBracket();}
   else document.getElementById('admin-err').textContent='❌ Mot de passe incorrect.';
 }
 
 async function removePlayer(i){
-  if(!confirm('Supprimer ?')) return;
-  setLoading(true); const players=await getPlayers(); players.splice(i,1); await savePlayers(players); setLoading(false);
-  updateHomeUI(players); renderAdmin();
+  if(!confirm('Supprimer ce joueur ?')) return;
+  const players=await loadPlayers();
+  players.splice(i,1);
+  await savePlayers(players);
+  await refreshHomeUI();
+  renderAdmin();
 }
 
 // Init
-(async()=>{
-  setLoading(true);
-  await initBins();
-  const players = await getPlayers();
-  updateHomeUI(players);
-  setLoading(false);
-})();
+refreshHomeUI();
 </script>
 </body>
 </html>
